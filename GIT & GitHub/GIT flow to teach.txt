@@ -1,0 +1,204 @@
+Create the github account - Mine for testing(jaichops17)
+
+Install python - Latest version
+
+Install pycharm or visual studio code
+
+Install Git
+
+Once installed go to cmd - type 'git' check it
+then configure it with below steps
+git config --global user.name "<GIT USER NAME>"
+git config --global user.email "<GIT USER EMAIL>"
+
+git --version
+
+
+Pycharm + GIT configuration:
+
+
+Step 3: Configure PyCharm to Use Git
+Ensure PyCharm is configured to use Git:
+
+Open PyCharm and go to File > Settings (or PyCharm > Preferences on macOS).
+
+Navigate to Version Control > Git.
+
+Ensure the path to the Git executable is correctly set (it should automatically detect it if Git is in your PATH). You can also manually set the path if needed, for example, C:\Program Files\Git\bin\git.exe.
+
+Click Test to verify the Git executable path & Click OK to apply the changes & Restart pycharm.
+
+
+First --> Do git clone and go to project using cd command and give git status
+
+git push ---> will fail, so keep open the default browser and it'll ask for signin for the 
+security token(First time only it'll happen)
+
+
+FLOW TO PROCEED:
+
+Do the file changes in github itself and show the commits, changes, IDs.
+
+.git - Act as bridge to my remote repo and to local repo. (Git copy folder)
+
+untracked file: will be in (working folder) of the local. if you want to move the untracked file to staging aging area, you should give "git add"
+
+If you want to move staging aging area files to "Git copy folder", you should commit.
+
+Now, if you want to update the "Git copy folder" to remote repo -> you should push
+
+
+Then create an another repo and add a new file.
+
+git clone <CLONE_URL>
+
+git status
+
+git diff <FILE_NAME>
+
+git add . or git add <File_name>  -> Untracked file moved to staging area
+
+git commit --m "Message here"    -> Staging data moved to git local copy folder
+
+git push origin main   -> git local copy folder pushed to remote repo
+
+
+
+
+
+
+Scenarios:
+
+1. Cloning the repo.
+
+
+2. Add, remove, modify the file local and push - git add, commit, push (scenario)
+
+
+3. Remove and add file in remote - git pull(example)
+
+
+4. Create a new folder in local and push it to remote -> git init
+
+git init 
+git status
+git add .
+git commit --m "New repo pushing"
+git push origin main - Will fail becoz it don't have any origin to sync.
+Create the same folder name in github and it'll show the origin link once it's created
+Now
+git remote add origin <ORIGIN_LINK>
+git branch --> will show as (master) - Git renamed the master as main in the recent version
+So if I give "git push origin main" -> it'll fail becoz no main branch only master
+
+So we've two ways to handle,
+1. git push origin master ---> Will work but main can't seen instead master will be there
+2. git branch -M main -> changing the branch name as main.
+
+Second approach will be good to proceed to avoid chaos.
+
+git push origin main
+
+
+Try the add and modify on this new folder.
+
+
+
+5. Creating the new branch within one repo
+
+git branch -a -- it'll list all branch
+
+go to github create the new branch under the one repo. if you want to see this branch in local, do the 
+
+"git pull"
+git branch -a
+git checkout <NEW_BRANCH>
+git branch -a
+
+Now going to do the changes in NEW_BRANCH
+
+creating the new file in NEW BRANCH
+
+git status
+git add .
+git commit --m "Message"
+git push origin <NEW_BRANCH>
+
+Now switch to, "git checkout main" and you can't see the changes which you did on NEW BRANCH
+
+If you want see the difference from main to NEW_BRANCH, switch to "git checkout main"
+
+git diff NEW_BRANCH  -> this will show diff from main with NEW_BRANCH.
+
+If you want to merge the NEW_BRANCH changes to main, do the below steps
+
+git merge NEW_BRANCH
+git push origin main
+
+
+
+6. Creating the pull request
+
+git branch TEST_PULL_REQUEST
+git branch -a
+git checkout TEST_PULL_REQUEST
+**create a new file
+git add .
+git commit --m "Pull request test"
+git push origin TEST_PULL_REQUEST
+
+Go to github and create the pull request. --> pull request -> new pull request ->
+
+base & compare -> choose compare and pick the TEST_PULL_REQUEST branch  -> click create pull request -> add a comment -> create now.
+
+go to pull request -> merge pull request
+
+
+
+7. GIT CONFLICTS
+
+Create a new repo "Merge conflict" and create file new.txt in main -> city-None
+
+create new branch "branch1" -> update the file new.txt -> city-Bangalore
+
+create new branch "branch2" -> update the file new.txt -> city-chennai
+
+Now create pull request for "branch1" and Now create pull request for "branch1"
+
+Now merge "branch1" branch pull request -> city-Bangalore
+
+Now merge "branch2" branch pull request -> it'll show conflict -> Manually fix it and go ahead to merge. Now main branch will updated based on our change.
+
+
+
+8. Overall GIT Lifecycle
+
+Create a new repo (WORK REPO) and add a file.txt
+
+git clone <work repo>
+
+git branch jai
+git branch vijay
+
+git checkout jai
+do file change in file.txt
+git add .
+git commit --m "Adding the change"
+git push origin jai
+
+git checkout main
+git merge jai
+git push origin main
+
+git checkout vijay
+git pull origin main 
+do some changes file.txt
+git add .
+git commit --m "Adding the change"
+git push origin vijay
+
+git checkout main
+git merge vijay
+git push origin main
+
+
